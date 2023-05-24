@@ -121,7 +121,12 @@ def recognize(file):
         speaker = emb.replace(".npy","")
         distance = euclidean(test_embs, enroll_embs)
         distances.update({speaker:distance})
-    if min(list(distances.values()))<p.THRESHOLD:
+
+    print(distances)
+
+    print('Current Threshold is: ', 0.15)
+    
+    if min(list(distances.values()))<0.15:
         print("Recognized: ",min(distances, key=distances.get))
     else:
         print("Could not identify the user, try enrolling again with a clear voice sample")
